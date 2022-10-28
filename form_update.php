@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nameErr = "Product Name is Required";
         $valid_name = false;
     } else {
-
+        $name = test_input($_POST["name"]);
         $valid_name = true;
 
     }

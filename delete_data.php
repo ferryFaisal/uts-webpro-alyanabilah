@@ -1,7 +1,6 @@
 <?php
 require "database.php";
 
-$id = $_GET['id'];
 $sql = "DELETE FROM products WHERE id= '$_GET[id]'";
 
 if (mysqli_query($conn, $sql)) {
