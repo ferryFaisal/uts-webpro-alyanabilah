@@ -112,28 +112,37 @@ function test_input($data)
     <main class="form w-1000 m-auto">
         <h1> UPDATE PRODUCT</h1>
         <p><span class="error">* required field</span></p>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-            ENCTYPE="multipart/form-data">
-            Product Name : <input type="text" name="name" value="<?php echo $name; ?>">
+        <form method="post" ENCTYPE="multipart/form-data">
+        Product Name : <input type="text" name="name" value="<?php echo $name; ?>">
+            <span class="error">* <?php echo $nameErr; ?></span>
             <br><br>
             <label for="textarea">Description:</label>
             <br>
+            
             <textarea name="desc" id="" cols="40" rows="5" value="<?php echo $desc ?>"><?php echo $desc ?></textarea>
+            <span class="error">* <?php echo $descErr; ?></span>
             <br><br>
+
             Price: <input type="number" min="1" step="any" name='price' value="<?php echo $price ?>">
+            <span class="error">* <?php echo $priceErr; ?></span>
             <br><br>
-            Upload Photo : <input type="file" name="file" value=''><br><br>
+
+            Upload Photo : <input type="file" name="file"><br><br>
             Recent Photo : <?php echo $nama_file ?><br>
+            <span class="error">* <?php echo $imageErr; ?></span><br>
             <img src="images/<?=$nama_file?>" alt="" width="200px">
             <br><br>
             <input type="submit" name="submit" value="Submit">
         </form>
 
+
         <?php
-if ($valid_name && $valid_desc && $valid_price == true) {
+if ($valid_name && $valid_desc && $valid_price && $valid_image == true) {
+
     include 'update_data.php';
 }
-mysqli_close($conn);
 ?>
-</main>
+    </main>
 </body>
+
+</html>
