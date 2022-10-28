@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $sql);
         <h2><b>TABLE PRODUCTS</h2></b>
     </caption>
     <h5>
-        <a href="register.php" >ADD PRODUCT</a>
+        <a href="upload.php" >ADD PRODUCT</a>
     </h5>
     <table class="table table-striped table-hover m-auto">
 
