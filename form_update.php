@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descErr = "Description is required";
         $valid_desc = false;
     } else {
-        desc = test_input($_POST["desc"]);
+        $desc = test_input($_POST["desc"]);
         $valid_desc = true;
     }
 
@@ -118,7 +118,7 @@ function test_input($data)
             <br><br>
             <label for="textarea">Description:</label>
             <br>
-            
+
             <textarea name="desc" id="" cols="40" rows="5" value="<?php echo $desc ?>"><?php echo $desc ?></textarea>
             <span class="error">* <?php echo $descErr; ?></span>
             <br><br>
