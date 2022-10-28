@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descErr = "Description is required";
         $valid_desc = false;
     } else {
-
+        desc = test_input($_POST["desc"]);
         $valid_desc = true;
     }
 
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $priceErr = "Product Price is required";
         $valid_price = false;
     } else {
-
+        $price = test_input($_POST["price"]);
         $valid_price = true;
     }
 
@@ -62,10 +62,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Upload file
         if (move_uploaded_file($_FILES['file']['tmp_name'], $dir_upload . $nama_file)) {
             // Insert record
-            include 'update_data.php';
             $valid_image = true;
-        }
+        } else {
+            $imageErr = "File photo is required";
+            $valid_image = false;
     }
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 ?>
 
