@@ -1,29 +1,16 @@
 <?php
 require "database.php";
 
-$email = $_GET['email'];
-$sql = "SELECT * FROM user WHERE email = '$email'";
+$email = $_GET['id'];
+$sql = "SELECT * FROM produts WHERE id = '$id'";
 $result = mysqli_query($conn, $sql);
-$attrAdmin = $attrOperator = $attrEditor = "";
 $nameErr = $roleErr = $passwordErr = $emailErr = "";
 $valid_name = $valid_role = $valid_password = false;
 
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
-        switch ($row['role']) {
-            case "Admin":
-                $attrAdmin = "selected";
-                break;
-            case "Operator":
-                $attrOperator = "selected";
-                break;
-            case "Editor":
-                $attrEditor = "selected";
-                break;
-
-        }
-        //end of switch
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
                 $nameErr = "Name is required";
