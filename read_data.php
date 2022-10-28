@@ -29,20 +29,21 @@ $result = mysqli_query($conn, $sql);
 
 <body>
     <caption>
-        <h2><b>USERS ACCOUNT</h2></b>
+        <h2><b>TABLE PRODUCTS</h2></b>
     </caption>
     <h5>
-        <a href="register.php" >ADD USER</a>
+        <a href="register.php" >ADD PRODUCT</a>
     </h5>
     <table class="table table-striped table-hover m-auto">
 
 
-        <thead>
+    <thead>
             <tr>
-
-                <th>Name</th>
-                <th>Role</th>
-                <th>Email</th>
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Photo</th>
                 <th>Date Created</th>
                 <th>Date Modified</th>
                 <th>Action</th>
@@ -54,18 +55,20 @@ if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
         ?>
-
             <tr>
+                <td><?php echo $row['id'] ?></td>
                 <td><?php echo $row['name'] ?></td>
-                <td><?php echo $row['role'] ?></td>
-                <td><?php echo $row['email'] ?></td>
-                <td><?php echo $row['date_created'] ?></td>
-                <td><?php echo $row['date_modified'] ?></td>
+                <td><?php echo $row['description'] ?></td>
+                <td><?php echo $row['price'] ?></td>
+                <td><a href="images/<?php echo $row['photo'] ?>"><img src="images/<?php echo $row['photo'] ?>" alt=""
+                width='100px' ;></td></a>
+                <td><?php echo $row['created'] ?></td>
+                <td><?php echo $row['modified'] ?></td>
 
                 <td>
-                    <a href='form_update.php?email=<?php echo $row['email'] ?>'><i class="bi bi-pen"></i></a> |
+                    <a href='form_update.php?id=<?php echo $row['id']; ?>'><i class="bi bi-pen"></i></a> |
                     <a onclick="return confirm ('Anda yakin akan menghapus record ini ?')"
-                        href='delete_data.php?email=<?php echo $row['email'] ?>'><i class="bi bi-trash"></i></a>
+                        href='delete_data.php?id=<?php echo $row['id'] ?>'><i class="bi bi-trash"></i></a>
                 </td>
 
 
