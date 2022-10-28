@@ -2,8 +2,8 @@
 require "database.php";
 
 // define variables and set to empty values
-$nameErr = $descErr = $priceErr = "";
-$name = $desc = $price = $nama_file = "";
+$nameErr = $descErr = $priceErr = $imageErr "";
+$name = $desc = $price = $image = $nama_file = "";
 $valid_name = $valid_desc = $valid_price = $valid_image = false;
 
 $sql = "SELECT * FROM products WHERE id = '$_GET[id]'";
