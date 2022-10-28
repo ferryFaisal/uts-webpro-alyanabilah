@@ -6,12 +6,12 @@ $role = $_POST['role'];
 $date_modified = date('d/m/Y', time());
 $email1 = $_POST['email'];
 
-$sql1 = "UPDATE user SET
-        name = '$name',
-        password = '$password',
-        role = '$role',
-        date_modified = '$date_modified'
-        where email = '$email1'";
+$sql1 = "UPDATE products SET name='$name',
+description='$desc',
+price='$price',
+photo='$nama_file',
+modified = sysdate()
+WHERE id='$id'";
 
 if (mysqli_query($conn, $sql1)) {
     echo "data berhasil dimasukkan ke database";
