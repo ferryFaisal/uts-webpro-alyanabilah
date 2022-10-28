@@ -1,3 +1,61 @@
+<?php
+$nameErr = $descErr = $priceErr = $imageErr = "";
+$name = $desc = $price = $image = "";
+$valid_name = $valid_desc = $valid_price = $valid_image = false;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["name"])) {
+        $nameErr = "Product name is Required";
+        $valid_name = false;
+    } else {
+        $name = test_input($_POST["name"]);
+        $valid_name = true;
+    }
+
+    // descript section
+    if (empty($_POST["desc"])) {
+        $descErr = "Description is required";
+        $valid_desc = false;
+    } else {
+        $desc = test_input($_POST["desc"]);
+        $valid_desc = true;
+    }
+
+    //price section
+    if (empty($_POST["price"])) {
+        $priceErr = "Price is required";
+        $valid_price = false;
+    } else {
+        $price = test_input($_POST["price"]);
+        $valid_price = true;
+    }
+
+    $nama_file = $_FILES['file']['name'];
+    $dir_upload = "images/";
+    $target_file = $dir_upload . basename($_FILES["file"]["name"]);
+
+    // Select file type
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Valid file extensions
+    $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+    // Check extension
+    if (in_array($imageFileType, $extensions_arr)) {
+        // Upload file
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $dir_upload . $nama_file)) {
+            // Insert record
+
+            $valid_image = true;
+        } else {
+            $imageErr = "File photo is required";
+            $valid_image = false;
+        }
+    } else {
+        $imageErr = "File photo is required";
+    }
+
+}
 <!DOCTYPE HTML>
 <html>
 
