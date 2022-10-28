@@ -18,41 +18,56 @@ if (mysqli_num_rows($result) > 0) {
         $nama_file = $row['photo'];
     }
 }
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["name"])) {
-                $nameErr = "Name is required";
-                $valid_name = false;
-            } else {
-                $name = trim($_POST["name"]);
-                $valid_name = true;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //product section
+    if (empty($_POST["name"])) {
+        $nameErr = "Product Name is Required";
+        $valid_name = false;
+    } else {
 
-                // check if name only contains letters and whitespace
-                if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-                    $nameErr = "Only letters and white space allowed";
+        $valid_name = true;
 
-                }
-            }
+    }
 
-            if (empty($_POST["password"])) {
-                $passwordErr = "Password is required";
-                $valid_password = false;
-                $valid_passwordrepeat = false;
-            } else {
-                $password = trim($_POST["password"]);
-                $valid_password = true;
-            }
+    // descript section
+    if (empty($_POST["desc"])) {
+        $descErr = "Description is required";
+        $valid_desc = false;
+    } else {
 
-            if (empty($_POST["role"])) {
-                $roleErr = "role is required";
-                $valid_role = false;
+        $valid_desc = true;
+    }
 
-            } else {
-                $role = trim($_POST["role"]);
-                $valid_role = true;
-            }
+    //price section
+    if (empty($_POST["price"])) {
+        $priceErr = "Product Price is required";
+        $valid_price = false;
+    } else {
+
+        $valid_price = true;
+    }
+
+    $nama_file = $_FILES['file']['name'];
+    $dir_upload = "images/";
+    $target_file = $dir_upload . basename($_FILES["file"]["name"]);
+
+    // Select file type
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // Valid file extensions
+    $extensions_arr = array("jpg", "jpeg", "png", "gif");
+
+    // Check extension
+    if (in_array($imageFileType, $extensions_arr)) {
+        // Upload file
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $dir_upload . $nama_file)) {
+            // Insert record
+            include 'update_data.php';
+            $valid_image = true;
         }
-
-        ?>
+    }
+}
+?>
 
 
 <!DOCTYPE html>
