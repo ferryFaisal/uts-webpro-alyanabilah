@@ -125,7 +125,7 @@ function test_input($data)
         <?php
 if ($valid_name && $valid_desc && $valid_price && $valid_image == true) {
 
-    include 'upload_data.php';
+    include 'update_data.php';
 }
 ?>
     </main>
