@@ -1,16 +1,17 @@
 <?php
 require "database.php";
 
-$email = $_GET['id'];
-$sql = "SELECT * FROM produts WHERE id = '$id'";
-$result = mysqli_query($conn, $sql);
-$nameErr = $roleErr = $passwordErr = $emailErr = "";
-$valid_name = $valid_role = $valid_password = false;
+// define variables and set to empty values
+$nameErr = $descErr = $priceErr = "";
+$name = $desc = $price = $nama_file = "";
+$valid_name = $valid_desc = $valid_price = $valid_image = false;
 
+$sql = "SELECT * FROM products WHERE id = '$_GET[id]'";
+$result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
-        
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
                 $nameErr = "Name is required";
