@@ -12,5 +12,5 @@ $conn = mysqli_connect($host, $username, $password, $db_name);
 if(!$conn) {
     die ("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected Successfully . (MYSQLi Procedural) <br><br>";
+// echo "Connected Successfully . (MYSQLi Procedural) <br><br>";
 ?>

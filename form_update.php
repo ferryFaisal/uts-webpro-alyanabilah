@@ -2,7 +2,7 @@
 require "database.php";
 
 // define variables and set to empty values
-$nameErr = $descErr = $priceErr = $imageErr "";
+$nameErr = $descErr = $priceErr = $imageErr =  "";
 $name = $desc = $price = $image = $nama_file = "";
 $valid_name = $valid_desc = $valid_price = $valid_image = false;
 
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $valid_image = false;
     }
 }
-
+}
 function test_input($data)
 {
     $data = trim($data);
