@@ -11,7 +11,13 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // output data of each row
     while ($row = mysqli_fetch_assoc($result)) {
-
+        $id = $row['id'];
+        $name = $row['name'];
+        $desc = $row['description'];
+        $price = $row['price'];
+        $nama_file = $row['photo'];
+    }
+}
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["name"])) {
                 $nameErr = "Name is required";
