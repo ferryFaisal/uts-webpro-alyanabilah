@@ -3,7 +3,9 @@
  <!-- Connect Mysql DB using Mysqli Procedural -->
  <?php
 require 'database.php';
-
+$name = $_POST['name'];
+$desc = $_POST['desc'];
+$price = $_POST['price'];
 // membuat database 
 //  $sql = "CREATE DATABASE webPro";
 // if (mysqli_query($conn, $sql)) {
@@ -32,20 +34,15 @@ require 'database.php';
 // }
 // mysqli_close($conn);
 
-$encryptPassword = sha1($_POST['password']);
-
-$sql = "INSERT INTO products (email, name, password, role, date_created, date_modified)
-VALUES ('$email',
-'$name',
-'$encryptPassword',
-'$role',
-'$created',
-'$modified')";
-
-
-
-
-
+$sql = "INSERT INTO products (name, description, price, photo,created,modified )
+    VALUES ('$name',
+    '$desc',
+    '$price',
+    '$nama_file',
+    SYSDATE(),
+    SYSDATE()
+    )";
+    
 if (mysqli_query($conn, $sql)){
     echo "data berhasil dimasukkan ke database";
 } else {
